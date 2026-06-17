@@ -11,7 +11,8 @@ import { ShippingAddress } from "@/types/order";
 import { loadStripe } from "@stripe/stripe-js";
 
 // Make sure to set this in your environment variables
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || "");
+const stripeKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
+const stripePromise = stripeKey ? loadStripe(stripeKey) : null;
 
 interface PaymentButtonProps {
   items: CartItem[];
@@ -25,6 +26,11 @@ export function PaymentButton({ items, address, couponId, disabled }: PaymentBut
   const [loading, setLoading] = useState(false);
 
   const handlePayment = async () => {
+    if (!stripeKey) {
+      toast.error("Payment is not configured yet. Please contact support.");
+      return;
+    }
+
     if (!user) {
       toast.error("Please login to proceed to payment");
       return;

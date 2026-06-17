@@ -9,6 +9,14 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_placeholder"
 });
 
 export async function POST(req: Request) {
+  // Stripe is not configured — return a clear error instead of crashing
+  if (!process.env.STRIPE_SECRET_KEY) {
+    return NextResponse.json(
+      { error: "Stripe is not configured. Please set STRIPE_SECRET_KEY in Vercel environment variables." },
+      { status: 503 }
+    );
+  }
+
   try {
     const { items, address, couponId }: { items: CartItem[], address: ShippingAddress, couponId?: string } = await req.json();
 

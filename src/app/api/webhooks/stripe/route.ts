@@ -11,6 +11,14 @@ const resend = new Resend(process.env.RESEND_API_KEY || "re_placeholder");
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET || "";
 
 export async function POST(req: Request) {
+  // Stripe webhook is not configured — return a clear error instead of crashing
+  if (!process.env.STRIPE_SECRET_KEY || !process.env.STRIPE_WEBHOOK_SECRET) {
+    return NextResponse.json(
+      { error: "Stripe webhook is not configured. Please set STRIPE_SECRET_KEY and STRIPE_WEBHOOK_SECRET in Vercel environment variables." },
+      { status: 503 }
+    );
+  }
+
   const payload = await req.text();
   const signature = req.headers.get("stripe-signature");
 
