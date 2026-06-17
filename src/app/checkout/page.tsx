@@ -17,8 +17,9 @@ import { CartItem } from "@/types/cart";
 import { CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabase";
+import { Suspense } from "react";
 
-export default function CheckoutPage() {
+function CheckoutPageContent() {
   const { cart, subtotal: cartSubtotal, loading: cartLoading } = useCart();
   const { user, loading: authLoading } = useAuth();
   const router = useRouter();
@@ -183,5 +184,17 @@ export default function CheckoutPage() {
       
       <Footer />
     </main>
+  );
+}
+
+export default function CheckoutPage() {
+  return (
+    <Suspense fallback={
+      <main className="min-h-screen bg-stone-50 flex items-center justify-center">
+        <div className="w-12 h-12 border-4 border-[#0F5A37] border-t-transparent rounded-full animate-spin"></div>
+      </main>
+    }>
+      <CheckoutPageContent />
+    </Suspense>
   );
 }

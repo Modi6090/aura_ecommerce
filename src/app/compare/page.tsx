@@ -9,8 +9,9 @@ import { supabase } from "@/lib/supabase";
 import { Product } from "@/types/product";
 import { formatCurrency } from "@/lib/utils";
 import { Loader2, Check, X, Star } from "lucide-react";
+import { Suspense } from "react";
 
-export default function ComparePage() {
+function ComparePageContent() {
   const searchParams = useSearchParams();
   const productIds = searchParams.get("products")?.split(",") || [];
   
@@ -136,5 +137,13 @@ export default function ComparePage() {
       
       <Footer />
     </main>
+  );
+}
+
+export default function ComparePage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-stone-50 flex flex-col items-center justify-center"><Loader2 size={40} className="animate-spin text-[#0F5A37]" /></div>}>
+      <ComparePageContent />
+    </Suspense>
   );
 }

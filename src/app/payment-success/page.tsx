@@ -9,8 +9,9 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { useCart } from "@/context/CartContext";
+import { Suspense } from "react";
 
-export default function PaymentSuccessPage() {
+function PaymentSuccessContent() {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session_id");
   const { fetchCart } = useCart();
@@ -76,5 +77,13 @@ export default function PaymentSuccessPage() {
       
       <Footer />
     </main>
+  );
+}
+
+export default function PaymentSuccessPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <PaymentSuccessContent />
+    </Suspense>
   );
 }
