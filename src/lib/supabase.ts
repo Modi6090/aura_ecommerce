@@ -8,10 +8,13 @@ if (!supabaseUrl || !supabaseAnonKey) {
   // (for example when collecting page data). Avoid throwing at module
   // import time — log a warning so the build can continue. Runtime
   // operations will still fail if these values are missing.
-  // Set empty strings so `createClient` can be imported safely.
+  // Set placeholder values so `createClient` can be imported safely.
   // Make sure to set the variables in Vercel dashboard for production.
   // eslint-disable-next-line no-console
   console.warn("Missing Supabase environment variables: NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY");
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+export const supabase = createClient(
+  supabaseUrl || "https://placeholder.supabase.co",
+  supabaseAnonKey || "placeholder"
+);
