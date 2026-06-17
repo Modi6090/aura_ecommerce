@@ -1,0 +1,40 @@
+
+> ecommerce_sample@0.1.0 build
+> next build
+
+  ▲ Next.js 14.2.35
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/12) ...
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+   Generating static pages (3/12) 
+   Generating static pages (6/12) 
+   Generating static pages (9/12) 
+ ✓ Generating static pages (12/12)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+┌ ○ /                                    16.7 kB         234 kB
+├ ○ /_not-found                          875 B          88.2 kB
+├ ○ /about                               192 B           217 kB
+├ ○ /auth/forgot-password                2.04 kB         164 kB
+├ ○ /auth/login                          2.67 kB         165 kB
+├ ○ /auth/reset-password                 1.57 kB         155 kB
+├ ○ /auth/signup                         2.18 kB         164 kB
+├ ○ /contact                             196 B           217 kB
+└ ○ /shop                                3.06 kB         220 kB
++ First Load JS shared by all            87.3 kB
+  ├ chunks/117-d25c83c8b888026f.js       31.7 kB
+  ├ chunks/fd9d1056-ddf907ced439b60a.js  53.7 kB
+  └ other shared chunks (total)          1.94 kB
+
+
+○  (Static)  prerendered as static content
+

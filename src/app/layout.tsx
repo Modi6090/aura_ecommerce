@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { LenisProvider } from "@/components/LenisProvider";
+import { Providers } from "@/providers/Providers";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -25,7 +26,9 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-[#FAFAFA] text-stone-900">
         <LenisProvider>
-          {children}
+          <Providers>
+            {children}
+          </Providers>
         </LenisProvider>
       </body>
     </html>
