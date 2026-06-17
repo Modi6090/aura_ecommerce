@@ -76,9 +76,11 @@ export const searchProducts = async (
 
 // Related products
 export const getRelatedProducts = async (
-  categoryId: string,
+  categoryId: string | undefined | null,
   currentProductId: string
 ): Promise<Product[]> => {
+  if (!categoryId) return [];
+  
   const { data, error } = await supabase
     .from("products")
     .select("*, product_images(image_url)")
