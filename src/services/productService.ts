@@ -79,14 +79,16 @@ export const getRelatedProducts = async (
   categoryId: string | undefined | null,
   currentProductId: string
 ): Promise<Product[]> => {
-  if (!categoryId) return [];
-  
-  const { data, error } = await supabase
+  let query = supabase
     .from("products")
     .select("*, product_images(image_url)")
-    .eq("category_id", categoryId)
-    .neq("id", currentProductId)
-    .limit(4);
+    .neq("id", currentProductId);
+
+  if (categoryId) {
+    query = query.eq("category_id", categoryId);
+  }
+
+  const { data, error } = await query.limit(4);
 
   if (error) throw error;
 

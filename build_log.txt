@@ -1,0 +1,73 @@
+
+> ecommerce_sample@0.1.0 build
+> next build
+
+  ▲ Next.js 14.2.35
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+   Generating static pages (0/32) ...
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+   Generating static pages (8/32) 
+The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+   Generating static pages (16/32) 
+   Generating static pages (24/32) 
+ ✓ Generating static pages (32/32)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+┌ ○ /                                    9.31 kB         242 kB
+├ ○ /_not-found                          883 B          88.4 kB
+├ ○ /about                               215 B           225 kB
+├ ○ /admin                               4.03 kB         272 kB
+├ ○ /admin/analytics                     13.6 kB         211 kB
+├ ○ /admin/categories                    3.2 kB          140 kB
+├ ○ /admin/customers                     3.38 kB         140 kB
+├ ○ /admin/inventory                     2.9 kB          161 kB
+├ ○ /admin/orders                        3.52 kB         211 kB
+├ ○ /admin/products                      3.37 kB         201 kB
+├ ○ /admin/reports                       2.64 kB         139 kB
+├ ○ /admin/settings                      2.85 kB         139 kB
+├ ƒ /api/checkout                        0 B                0 B
+├ ƒ /api/webhooks/stripe                 0 B                0 B
+├ ○ /auth/forgot-password                2.19 kB         169 kB
+├ ○ /auth/login                          2.81 kB         170 kB
+├ ○ /auth/reset-password                 1.65 kB         160 kB
+├ ○ /auth/signup                         2.32 kB         169 kB
+├ ○ /cart                                2.51 kB         227 kB
+├ ○ /categories                          1.6 kB          227 kB
+├ ○ /checkout                            32.1 kB         257 kB
+├ ○ /compare                             1.96 kB         227 kB
+├ ○ /contact                             221 B           225 kB
+├ ○ /orders                              3.33 kB         228 kB
+├ ƒ /orders/[id]                         3.59 kB         229 kB
+├ ○ /payment-cancel                      1.02 kB         226 kB
+├ ○ /payment-success                     1.54 kB         226 kB
+├ ƒ /products/[id]                       11.6 kB         238 kB
+├ ○ /profile/addresses                   2.29 kB         227 kB
+├ ○ /shop                                7.38 kB         232 kB
+└ ○ /wishlist                            1.85 kB         227 kB
++ First Load JS shared by all            87.5 kB
+  ├ chunks/2117-d86cbc7c52962e33.js      31.9 kB
+  ├ chunks/fd9d1056-08c28c1f39be9001.js  53.7 kB
+  └ other shared chunks (total)          1.95 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
