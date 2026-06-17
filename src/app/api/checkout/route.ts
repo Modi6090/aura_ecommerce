@@ -4,7 +4,7 @@ import { supabase } from "@/lib/supabase";
 import { CartItem } from "@/types/cart";
 import { ShippingAddress } from "@/types/order";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_placeholder", {
   apiVersion: "2026-05-27.dahlia",
 });
 
