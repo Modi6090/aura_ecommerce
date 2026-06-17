@@ -9,9 +9,34 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+export const viewport = {
+  themeColor: "#0F5A37",
+};
+
 export const metadata: Metadata = {
-  title: "Aura - Premium Furniture",
-  description: "Explore Our Modern Furniture Collection",
+  title: "Aura Ecommerce | Premium Furniture & Decor",
+  description: "Shop the best modern furniture and home decor. High-quality pieces for every room.",
+  manifest: "/manifest.json",
+  openGraph: {
+    title: "Aura Ecommerce",
+    description: "Premium furniture and home decor ecommerce platform.",
+    url: "https://aura-ecommerce.com",
+    siteName: "Aura",
+    images: [
+      {
+        url: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Aura Ecommerce",
+    description: "Shop the best modern furniture.",
+  },
 };
 
 export default function RootLayout({

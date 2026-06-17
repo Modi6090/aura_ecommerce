@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { authService } from '@/services/authService';
-import toast from 'react-hot-toast';
+import { toast } from "sonner";
 import GuestRoute from '@/components/auth/GuestRoute';
 
 export default function LoginPage() {

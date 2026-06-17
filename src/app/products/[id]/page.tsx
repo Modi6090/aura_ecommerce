@@ -8,7 +8,10 @@ import { getRelatedProducts } from "@/services/productService";
 import { Product } from "@/types/product";
 import { ProductDetailsSkeleton } from "@/components/product/ProductDetailsSkeleton";
 import { ProductRating } from "@/components/product/ProductRating";
+import { ProductReviews } from "@/components/product/ProductReviews";
 import { RelatedProducts } from "@/components/product/RelatedProducts";
+import { RecentlyViewed } from "@/components/product/RecentlyViewed";
+import { AIRecommendations } from "@/components/product/AIRecommendations";
 import { formatCurrency, cn } from "@/lib/utils";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -29,6 +32,18 @@ export default function ProductDetailsPage() {
       getRelatedProducts(product.category_id, product.id)
         .then(setRelatedProducts)
         .catch(console.error);
+
+      // Save to Recently Viewed
+      try {
+        const stored = localStorage.getItem("recently_viewed");
+        let recent = stored ? JSON.parse(stored) : [];
+        recent = recent.filter((p: Product) => p.id !== product.id);
+        recent.unshift(product);
+        if (recent.length > 10) recent.pop();
+        localStorage.setItem("recently_viewed", JSON.stringify(recent));
+      } catch (e) {
+        console.error("Failed to save recently viewed", e);
+      }
     }
   }, [product]);
 
@@ -234,6 +249,7 @@ export default function ProductDetailsPage() {
                 <Button 
                   size="lg" 
                   variant="outline"
+                  onClick={() => window.location.href = `/checkout?buy_now=${product.id}&qty=${quantity}`}
                   className="flex-1 w-full border-stone-900 text-stone-900 hover:bg-stone-900 hover:text-white text-lg"
                 >
                   Buy Now
@@ -303,81 +319,16 @@ export default function ProductDetailsPage() {
 
       {/* Reviews Section */}
       <Container className="py-24">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-          <div>
-            <h2 className="text-3xl font-bold text-stone-900 mb-4">Customer Reviews</h2>
-            <div className="flex items-center gap-4">
-              <div className="flex gap-1 text-yellow-400">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <Star 
-                    key={star} 
-                    size={28} 
-                    className={cn(star <= Math.round(product.rating) ? "fill-current" : "text-stone-200")} 
-                  />
-                ))}
-              </div>
-              <span className="text-2xl font-bold text-stone-900">{product.rating.toFixed(1)}</span>
-              <span className="text-stone-500">Based on {product.review_count} reviews</span>
-            </div>
-          </div>
-          <Button variant="outline">Write a Review</Button>
-        </div>
-
-        {product.review_count === 0 ? (
-          <div className="bg-stone-50 rounded-3xl p-16 text-center border border-stone-100">
-            <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
-              <Star size={32} className="text-stone-300" />
-            </div>
-            <h3 className="text-2xl font-bold text-stone-900 mb-2">No reviews yet</h3>
-            <p className="text-stone-500 mb-8 max-w-md mx-auto">Be the first to review this product and share your thoughts with other customers.</p>
-            <Button variant="primary">
-              Write the first review
-            </Button>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Mocked reviews since we don't have review fetching logic yet */}
-            {[1, 2].map((i) => (
-              <div key={i} className="bg-white p-8 rounded-[2rem] border border-stone-100 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-stone-100 rounded-full flex items-center justify-center text-stone-500 font-bold text-lg">
-                      {i === 1 ? 'JD' : 'AS'}
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-stone-900">{i === 1 ? 'John Doe' : 'Alice Smith'}</h4>
-                      <p className="text-sm text-stone-500">Verified Buyer</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-1 text-yellow-400">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <Star 
-                        key={star} 
-                        size={16} 
-                        className={cn(star <= (i === 1 ? 5 : 4) ? "fill-current" : "text-stone-200")} 
-                      />
-                    ))}
-                  </div>
-                </div>
-                <p className="text-stone-600 leading-relaxed italic">
-                  "{i === 1 
-                    ? "Absolutely fantastic product! Exceeded all my expectations. The quality is top-notch and it looks even better in person." 
-                    : "Really good quality, solid build. Shipping was fast too. Definitely recommend it."}"
-                </p>
-                <div className="mt-6 text-sm text-stone-400">
-                  {i === 1 ? '2 days ago' : '1 week ago'}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
+        <ProductReviews productId={product.id} />
       </Container>
 
       {/* Related Products */}
       {relatedProducts.length > 0 && (
         <div className="border-t border-stone-100 bg-white pt-12 pb-24">
           <Container>
+            <AIRecommendations productId={product.id} />
             <RelatedProducts products={relatedProducts} title="You May Also Like" />
+            <RecentlyViewed currentProductId={product.id} />
           </Container>
         </div>
       )}

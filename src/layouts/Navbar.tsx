@@ -9,7 +9,8 @@ import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/context/AuthContext";
 import { authService } from "@/services/authService";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
+import { CartBadge } from "@/components/navbar/CartBadge";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -90,10 +91,7 @@ export function Navbar() {
           <motion.button whileHover={{ scale: 1.1 }} className="hover:text-[#0F5A37] transition-colors">
             <Search className="w-5 h-5" />
           </motion.button>
-          
-          <motion.button whileHover={{ scale: 1.1 }} className="hover:text-[#0F5A37] transition-colors">
-            <ShoppingCart className="w-5 h-5" />
-          </motion.button>
+          <CartBadge />
 
           {user ? (
             <div className="relative" ref={userMenuRef}>

@@ -2,13 +2,20 @@
 
 import React from 'react';
 import { AuthProvider } from '../context/AuthContext';
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from 'sonner';
+
+import { CartProvider } from '../context/CartContext';
+import { WishlistProvider } from '../context/WishlistContext';
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <AuthProvider>
-      <Toaster position="top-center" />
-      {children}
+      <CartProvider>
+        <WishlistProvider>
+          <Toaster position="top-center" richColors />
+          {children}
+        </WishlistProvider>
+      </CartProvider>
     </AuthProvider>
   );
 };

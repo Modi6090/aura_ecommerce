@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { authService } from '@/services/authService';
-import toast from 'react-hot-toast';
+import { toast } from "sonner";
 
 export default function ResetPasswordPage() {
   const router = useRouter();
